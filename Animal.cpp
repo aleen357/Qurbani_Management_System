@@ -1,4 +1,9 @@
 #include "Animal.h"
+
+Animal::Animal()
+{
+
+}
 Animal::Animal(int id, int price)
 {
 	this->token = id;

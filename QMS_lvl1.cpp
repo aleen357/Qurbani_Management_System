@@ -2,10 +2,20 @@
 //
 
 #include <iostream>
+#include "Admin_UI.h"
+
+void Slaughter_House_Main()
+{
+	Admin_UI Admin;
+	Admin.add_animal();
+	return;
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Slaughter_House_Main();
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

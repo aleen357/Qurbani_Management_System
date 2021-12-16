@@ -5,7 +5,31 @@ using namespace std;
 int Animal_details::curr_token = 0;
 Animal_details::Animal_details()
 {
-	//
+	//Animal details is a member variable of admin_ui So when it is made it should 
+	//read Cow and Goat bin files
+	//write objects to member of animal_details
+
+	//STEP 1: Fill Cow list with cow.bin
+	ifstream fin;
+	fin.open("Cow.bin", ios::binary);
+	if (fin.is_open())
+	{
+		cout << "cow file opened to read--reading to fill list cows in animal details" << endl;
+		Cow *dummy;
+		while(!fin.eof())
+		{
+			dummy = new Cow;
+			fin.read((char*)& *dummy, sizeof(Cow));
+			this->my_cow.push_back(*dummy);
+			cout << "price: " << dummy->price << endl;
+			cout << "token" << dummy->token << endl;
+			//file_obj.write((char*)& class_obj, sizeof(class_obj));
+			delete dummy;
+		}
+
+	}
+	else
+		cout << "error in cow file" << endl;
 	
 }
 void Animal_details::fill_details()
@@ -17,13 +41,36 @@ void Animal_details::fill_details()
 void Animal_details::write_details()
 {
 	ofstream out;
-	out.open("Cow.txt");
+	out.open("Cow.bin", ios::binary);
 	if (out.is_open())
 	{
 		cout << "cow file opened to write" << endl;
-		Cow dummy()
-		file_obj.write((char*)& class_obj, sizeof(class_obj));
+		Cow dummy();
 
+		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
+			out.write((char*)& *i, sizeof(Cow));
+
+		//file_obj.write((char*)& class_obj, sizeof(class_obj));
+		out.close();
+	}
+	else
+		cout << "error in cow file" << endl;
+
+	//read eg--this is only a testing code for read after writting the file with the new animal
+	ifstream in;
+	in.open("Cow.bin", ios::binary);
+	if (in.is_open())
+	{
+		cout << "cow file opened to read" << endl;
+		Cow dummy;
+		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
+		{
+			in.read((char*)& dummy, sizeof(Cow));
+			cout << "price: " << dummy.price << endl;
+			cout << "token" << dummy.token << endl;
+			//file_obj.write((char*)& class_obj, sizeof(class_obj));
+		}
+		
 	}
 	else
 		cout << "error in cow file" << endl;
@@ -75,6 +122,7 @@ bool Animal_details::add_cow()
 	curr_token++;
 	Cow new_cow(curr_token, price);
 	this->my_cow.push_back(new_cow);
+	this->write_details();
 	return true;
 }
 

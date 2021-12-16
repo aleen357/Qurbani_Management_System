@@ -8,8 +8,9 @@ class Cow : public Animal {
     bool *parts;
     int parts_remaining;
 public:
-	
+	Cow();
 	Cow(int, int);
+	~Cow();
 };
 
 
