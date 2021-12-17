@@ -14,6 +14,7 @@ void Slaughter_House_Main()
 
 int main()
 {
+	cout << "						Welcome to the Qurbani Masjid\n";
 	Slaughter_House_Main();
 	return 0;
 }

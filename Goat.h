@@ -6,7 +6,9 @@
 class Goat : public Animal {
     bool part_of_goat;
 public:
+	Goat();
 	Goat(int, int);
+	~Goat();
 };
 
 
