@@ -24,13 +24,10 @@ void Animal_details::fill_details()
 		cout << "We have these Cows here in our farm:" << endl;
 		Cow *dummy;
 		dummy = new Cow;
-		while (fin.read((char*)& *dummy, sizeof(Cow)))
+		while (fin.read((char*)& *dummy, sizeof(Cow)))//until we read full cow file--we read obj and place in list
 		{
 			this->my_cow.push_back(*dummy);
-			cout << "price: " << dummy->price << endl;
-			cout << "token: " << dummy->token << endl << endl;
 			token1 = dummy->token;
-			//file_obj.write((char*)& class_obj, sizeof(class_obj));
 			delete dummy;
 			dummy = new Cow;
 		}
@@ -38,7 +35,6 @@ void Animal_details::fill_details()
 	}
 	else
 		cout << "error in cow file" << endl;
-
 
 
 	ifstream fins;
@@ -51,13 +47,11 @@ void Animal_details::fill_details()
 		while (fins.read((char*)& *dummy2, sizeof(Goat)))
 		{
 			this->my_goat.push_back(*dummy2);
-			cout << "price: " << dummy2->price << endl;
-			cout << "token: " << dummy2->token << endl << endl;
 			token2 = dummy2->token;
-			//file_obj.write((char*)& class_obj, sizeof(class_obj));
 			delete dummy2;
 			dummy2 = new Goat;
 		}
+
 		fins.close();
 	}
 	else
@@ -69,6 +63,28 @@ void Animal_details::fill_details()
 		curr_token = token2;
 
 }
+
+void Animal_details::view_details()
+{
+	//STEP 1: Fill Cow list with cow.bin
+	
+		cout << "We have these Cows here in our farm:" << endl;
+		
+		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
+		{
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+
+		cout << "\nWe have the Goats here in our farm:" << endl;
+
+		for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
+		{
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+}
+
 
 void Animal_details::write_details()
 {

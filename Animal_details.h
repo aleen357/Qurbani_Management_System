@@ -19,5 +19,6 @@ public:
 	bool add_cow();
 	bool add_goat();
 	int validate_price();
+	void view_details();
 
 };
