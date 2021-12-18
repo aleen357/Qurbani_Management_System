@@ -20,7 +20,7 @@ void Animal_details::available_animal_details()
 	cout << "\nWe have the available cows here in our farm:" << endl;
 	for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
 	{
-		if (i->status == true)
+		if (i->status == false)
 		{
 			cout << "price: " << i->price << endl;
 			cout << "token: " << i->token << endl << endl;
@@ -31,7 +31,7 @@ void Animal_details::available_animal_details()
 
 	for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
 	{
-		if (i->status == true)
+		if (i->status == false)
 		{
 			cout << "price: " << i->price << endl;
 			cout << "token: " << i->token << endl << endl;

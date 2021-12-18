@@ -5,6 +5,7 @@
 class Admin_UI 
 {
 	Animal_details My_Animals;
+	Booking_main My_booking;
 
 public:
 	Admin_UI();
@@ -21,5 +22,5 @@ public:
 	void view_an_animal(int);
 	void view_reservations_of_customer(int);
 
-
+	friend class Booking_main;
 };

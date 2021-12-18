@@ -8,13 +8,16 @@
 using namespace std;
 
 class Customer {
-    string name;
-    string cnic;
-    string contact;
+    char name[30];
+    char cnic[20];
+    char contact[15];
 public:
     friend class Booking;
 	Customer();
-	Customer(const string &N, const string &id, const string &c);
+	void SetName(char(&N)[30]);
+	void SetCNIC(char(&id)[20]);
+	void SetContact(char(&c)[15]);
+	Customer( char (&N)[30],  char (&id)[20], char (&c)[15]);
 };
 
 

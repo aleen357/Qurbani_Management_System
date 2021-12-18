@@ -7,7 +7,7 @@
 
 #include<stdlib.h>
 
-void AdminMenu()
+void AdminMenu()			//menu of admin's functionalities
 {
 	cout << "Welcome Admin" << endl;
 	cout << "1. Add animal" << endl;
@@ -41,35 +41,39 @@ void Admin_function(char buff[20])
 	{
 		switch (x)
 		{
-		case 1:
+		case 1:							//adds a new animal
 			Admin.add_animal();
 			break;
 		
-		case 2:
-			Admin.add_booking();
+		case 2:							//adds a new booking
+			Admin.add_booking();		
 			break;
-		case 3:
+
+		case 3:							//displays all animals
 			Admin.view_details();
 			break;
 		
-		case 4:
+		case 4:							//displays all available animals
 			Admin.view_available_animals();
 			break;
-		case 5:
+
+		case 5:							//displays the animal of specified token no.
 			cout << "Enter the token Id of that animal\n";
 			cin >> id;
 			Admin.view_an_animal(id);
 			break;
-		case 6:
+
+		case 6:							//displays all the bookings
 			Admin.view_booking();
 			break;
-		case 7:
+
+		case 7:							//displays the bookings of a customer
 			cout << "Enter the booking Id of that customer\n";
 			cin >> id;
 			Admin.view_reservations_of_customer(id);
 			break;
 
-		case 8:
+		case 8:							//quits the program
 			cout << "Quitting";
 			break;
 
@@ -87,21 +91,20 @@ void Slaughter_House_Main()
 {
 	cout << "Signed in as Admin " << endl;
 	
-	char buff[20];
-	char buff_text[20];
+	char buff[20];			//to get pass from user
+	char buff_text[20];		//to read pass of admin from file
 	
 		cout << "Enter Password" << endl;
 		cin >> buff;
 		ifstream fin;
 		fin.open("AdminPass.txt");
-		if (fin.is_open())
+		if (fin.is_open())					//reads password of admin from file
 		{
 			fin.getline(buff_text, 20);
 			int length = strlen(buff_text);
 			buff_text[length] = '\0';
-			cout << buff_text << endl;
-			cout << buff << endl;
-			if (strcmp(buff, buff_text) == 0)
+			
+			if (strcmp(buff, buff_text) == 0)		//if passwords match
 			{
 				Admin_function(buff_text);
 			}

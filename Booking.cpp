@@ -1,11 +1,17 @@
 
 #include "Booking.h"
-int Booking::booking_id_count = 0;
 
 Booking::Booking()
 {
-	booking_id = booking_id_count + 1;
-	booking_id_count++;
-	Day_to_get_meat = 0;
-
+	//
 }
+
+Booking::Booking(int x)
+{
+	booking_id = x;
+}
+int Booking::calc_total_price()
+{
+	return 0;
+}
+

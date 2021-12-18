@@ -17,17 +17,21 @@ struct booked_animal//we can make a list of this strut so we can keep track of a
 };
 
 class Booking {
-    static int booking_id_count;
+protected:
     int booking_id;
     list<booked_animal> detail_of_animal;
     Customer buyer;
     int Day_to_get_meat;
-    string Start_time;  // when his slaughter time starts
-    string End_time;
+    int Shour;  // when his slaughter time starts
+	int Ehour;
+	int Smins;  // when his slaughter time starts
+	int Emins;
 	int total_price;
 public:
+	friend class Booking_main;
     friend class Customer;
 	Booking();
+	Booking(int);
 	int calc_total_price();
 };
 

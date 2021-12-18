@@ -7,12 +7,12 @@ class Animal
 protected:
 	int token;
 	int price;
-	bool status;
+	bool status;		//booked or not
 public:
 	Animal(int, int);
 	Animal();
 	friend class Animal_details;
-	
+	friend class Booking_main;
 };
 
 #endif //SDA_PROJECT_ANIMAL_H

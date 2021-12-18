@@ -12,16 +12,15 @@ protected:
 	static int curr_token;
 	
 public:
-	friend class Salesman;
 	Animal_details();
-	void fill_details();//the file handling function which will read from cow.txt and goat.txt and fill the arrays
-	void write_details();
-	void available_animal_details();
-	bool add_animal();
-	bool add_cow();
-	bool add_goat();
-	int validate_price();
-	void view_details();
-	void view_animal(int);
-
+	void fill_details();	//the file handling function which will read from cow.txt and goat.txt and fill the arrays
+	void write_details();	//writes the animal to the file
+	void available_animal_details();	//displays the available animals
+	bool add_animal();		//adds a new animal
+	bool add_cow();			//adds a new cow
+	bool add_goat();		//adds a new goat
+	int validate_price();	//makes sure the price is not negative
+	void view_details();	//displays all the animals
+	void view_animal(int);	//displays a specific  animal
+	friend class Booking_main;
 };
