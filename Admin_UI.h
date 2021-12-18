@@ -2,11 +2,11 @@
 #include "Animal_details.h"
 #include "Booking_main.h"
 #include "Salesman.h"
-#include<list> 
+#include <list>
 class Admin_UI:public Salesman
 {
 	list<Salesman> my_salesmen;
-	int number_salesman;
+	static int number_salesman;
 
 public:
 	Admin_UI();
@@ -19,4 +19,5 @@ public:
 	void add_salesman();
 	void view_details();
 	void write_salesman();//updates salesman file
+	void fill_salesman_list();
 };

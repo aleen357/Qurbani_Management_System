@@ -22,6 +22,8 @@ public:
 	void view_available_animals();
 	void view_details();
 	void view_an_animal();
+	int get_id();
+	char* get_pass();
 	
 
 };

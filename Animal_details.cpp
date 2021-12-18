@@ -94,7 +94,7 @@ void Animal_details::write_details()
 	if (out.is_open())
 	{
 		cout << "This is the new list of cows in the farm:" << endl;
-		Cow dummy();
+		Cow dummy;
 
 		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
 			out.write((char*)& *i, sizeof(Cow));
