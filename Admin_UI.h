@@ -5,7 +5,7 @@
 #include<list> 
 class Admin_UI:public Salesman
 {
-	list<Salesman> My_Salesmen;
+	list<Salesman> my_salesmen;
 	int number_salesman;
 
 public:

@@ -33,13 +33,26 @@ void Admin_UI::add_salesman()
 	cout << "Enter Password of new salesman" << endl;
 	cin.getline(buff, 20);
 	Salesman new_salesman(number_salesman, buff);
-	My_Salesmen.push_back(new_salesman);
+	my_salesmen.push_back(new_salesman);
 	//write new salesman to file
 
 }
 void Admin_UI::write_salesman()//this function updates the salesman file with the new sales man
 {
+	//For Salesman
+	ofstream out;
+	out.open("Salesman.bin", ios::binary);
+	if (out.is_open())
+	{
+		cout << "This is the new list of Salesman in the system:" << endl;
+		Salesman dummy();
 
+		for (auto i = my_salesmen.begin(); i != my_salesmen.end(); ++i)
+			out.write((char*) & *i, sizeof(Salesman));
+		out.close();
+	}
+	else
+		cout << "error in salesmen file" << endl;
 }
 
 
