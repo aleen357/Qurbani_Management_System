@@ -21,7 +21,7 @@ void Animal_details::fill_details()
 	fin.open("Cow.bin", ios::binary);
 	if (fin.is_open())
 	{
-		cout << "We have these Cows here in our farm:" << endl;
+		//for cows
 		Cow *dummy;
 		dummy = new Cow;
 		while (fin.read((char*)& *dummy, sizeof(Cow)))//until we read full cow file--we read obj and place in list
@@ -41,7 +41,7 @@ void Animal_details::fill_details()
 	fins.open("Goat.bin", ios::binary);
 	if (fins.is_open())
 	{
-		cout << "\nWe have the Goats here in our farm:" << endl;
+		//for goats
 		Goat *dummy2;
 		dummy2 = new Goat;
 		while (fins.read((char*)& *dummy2, sizeof(Goat)))
@@ -94,7 +94,7 @@ void Animal_details::write_details()
 	if (out.is_open())
 	{
 		cout << "This is the new list of cows in the farm:" << endl;
-		Cow dummy();
+		Cow dummy;
 
 		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
 			out.write((char*)& *i, sizeof(Cow));

@@ -5,7 +5,23 @@
 #include "Admin_UI.h"
 #include <fstream>
 
-void Admin_function()
+#include<stdlib.h>
+
+void AdminMenu()
+{
+	cout << "Welcome Admin" << endl;
+	cout << "1. Add animal" << endl;
+	cout << "2. Add salesman" << endl;
+	cout << "3. Add bookin/make schedule" << endl;
+	cout << "4. View animal" << endl;
+	cout << "5. View Available animal" << endl;
+	cout << "6. View booking/ Schedule" << endl;
+	cout << "7. View a Specific Animal's Details" << endl;
+	cout << "8. View reservation of a customer--(requires booking id)" << endl;
+	cout << "9. Quit" << endl;
+}
+
+void Admin_function(char buff[20])
 {
 	/*Add animal
 	Add salesman
@@ -18,48 +34,49 @@ void Admin_function()
 	View an animal's detail
 	View schedule
 	View all the reservations of a customer(show the total amount)*/
-	Admin_UI Admin;
-	cout << "Welcome Admin" << endl;
-	cout << "1. Add animal" << endl;
-	cout << "2. Add salesman" << endl;
-	cout << "3. Add bookin/make schedule" << endl;
-	cout << "4. View animal" << endl;
-	cout << "5. View Available animal" << endl;
-	cout << "6. View booking/ Schedule" << endl;
-	cout << "7. View a Specific Animal's Details" << endl;
-	cout << "8. View reservation of a customer--(requires booking id)" << endl;
+	Admin_UI Admin(buff);
+	AdminMenu();
 	int x;
 	cin >> x;
-	switch (x)
+	while (x != 9)
 	{
-	case 1:
-		Admin.add_animal();
-		break;
-	case 2:
-		//Admin.add_salesman();
-		break;
-	case 3:
-		//Admin.add_booking();
-		break;
-	case 4:
-		Admin.view_details();
-		break;
-	case 5:
+		switch (x)
+		{
+		case 1:
+			Admin.add_animal();
+			break;
+		case 2:
+			Admin.add_salesman();
+			break;
+		case 3:
+			//Admin.add_booking();
+			break;
+		case 4:
+			Admin.view_details();
+			break;
+		case 5:
 
-		break;
-	case 6:
+			break;
+		case 6:
 
-		break;
-	case 7:
+			break;
+		case 7:
 
-		break;
-	case 8:
+			break;
+		case 8:
 
-		break;
+			break;
+		case 9:
 
+			break;
 
-	default:
-		break;
+		default:
+			break;
+		}
+		system("pause");
+		system("CLS");
+		AdminMenu();
+		cin >> x;
 	}
 
 
@@ -91,7 +108,7 @@ void Slaughter_House_Main()
 			cout << buff << endl;
 			if (strcmp(buff, buff_text) == 0)
 			{
-				Admin_function();
+				Admin_function(buff_text);
 			}
 
 		}
