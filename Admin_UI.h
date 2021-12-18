@@ -3,15 +3,14 @@
 #include "Booking_main.h"
 #include "Salesman.h"
 #include<list> 
-class Admin_UI
+class Admin_UI:public Salesman
 {
-	//Booking_main My_bookings;
-	Animal_details My_Animals;
 	list<Salesman> My_Salesmen;
 	int number_salesman;
 
 public:
 	Admin_UI();
+	Admin_UI(char arr[20]);
 	//void add_booking();
 	void add_animal();
 	//void view_booking();
@@ -19,4 +18,5 @@ public:
 	//void get_password();
 	void add_salesman();
 	void view_details();
+	void write_salesman();//updates salesman file
 };

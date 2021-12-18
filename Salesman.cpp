@@ -1,6 +1,8 @@
 #include "Salesman.h"
+
 Salesman::Salesman()
 {
+	id = 0;
 	//you are signed in as id=x
 	//
 }
