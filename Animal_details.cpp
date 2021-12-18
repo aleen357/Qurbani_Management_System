@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
+
 int Animal_details::curr_token = 0;
 
 Animal_details::Animal_details()
@@ -12,6 +13,54 @@ Animal_details::Animal_details()
 	fill_details();
 	
 }
+
+
+void Animal_details::available_animal_details()
+{
+	cout << "\nWe have the available cows here in our farm:" << endl;
+	for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
+	{
+		if (i->status == true)
+		{
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+	}
+
+	cout << "\nWe have the available Goats here in our farm:" << endl;
+
+	for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
+	{
+		if (i->status == true)
+		{
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+	}
+}
+
+void Animal_details::view_animal(int x)
+{
+	for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
+	{
+		if (i->token == x)
+		{
+			cout << "The animal is a Cow\n";
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+	}
+	for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
+	{
+		if (i->token == x)
+		{
+			cout << "The animal is a Goat\n";
+			cout << "price: " << i->price << endl;
+			cout << "token: " << i->token << endl << endl;
+		}
+	}
+}
+
 void Animal_details::fill_details()
 {
 	//STEP 1: Fill Cow list with cow.bin
@@ -35,7 +84,6 @@ void Animal_details::fill_details()
 	}
 	else
 		cout << "error in cow file" << endl;
-
 
 	ifstream fins;
 	fins.open("Goat.bin", ios::binary);
@@ -132,7 +180,7 @@ void Animal_details::write_details()
 	if (outs.is_open())
 	{
 		cout << "This is the new list of goats in the farm:" << endl;
-		Goat dummy();
+		Goat dummy;
 
 		for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
 			outs.write((char*)& *i, sizeof(Goat));

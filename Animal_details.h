@@ -16,10 +16,12 @@ public:
 	Animal_details();
 	void fill_details();//the file handling function which will read from cow.txt and goat.txt and fill the arrays
 	void write_details();
+	void available_animal_details();
 	bool add_animal();
 	bool add_cow();
 	bool add_goat();
 	int validate_price();
 	void view_details();
+	void view_animal(int);
 
 };

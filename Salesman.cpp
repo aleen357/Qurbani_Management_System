@@ -21,6 +21,15 @@ void Salesman::view_available_animals()
 }
 void Salesman::view_details()
 {
+	My_Animals.view_details();
+	
+}
+void Salesman::view_an_animal()
+{
+
+}
+void Salesman::view_reservations_of_customer(int)
+{
 
 }
 int Salesman::get_id()

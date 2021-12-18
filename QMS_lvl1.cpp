@@ -11,14 +11,13 @@ void AdminMenu()
 {
 	cout << "Welcome Admin" << endl;
 	cout << "1. Add animal" << endl;
-	cout << "2. Add salesman" << endl;
-	cout << "3. Add bookin/make schedule" << endl;
-	cout << "4. View animal" << endl;
-	cout << "5. View Available animal" << endl;
+	cout << "2. Add bookin/make schedule" << endl;
+	cout << "3. View all animals" << endl;
+	cout << "4. View Available animal" << endl;
+	cout << "5. View a Specific Animal's Details" << endl;
 	cout << "6. View booking/ Schedule" << endl;
-	cout << "7. View a Specific Animal's Details" << endl;
-	cout << "8. View reservation of a customer--(requires booking id)" << endl;
-	cout << "9. Quit" << endl;
+	cout << "7. View reservation of a customer--(requires booking id)" << endl;
+	cout << "8. Quit" << endl;
 }
 
 void Admin_function(char buff[20])
@@ -34,40 +33,44 @@ void Admin_function(char buff[20])
 	View an animal's detail
 	View schedule
 	View all the reservations of a customer(show the total amount)*/
-	Admin_UI Admin(buff);
+	Admin_UI Admin;
 	AdminMenu();
-	int x;
+	int x, id=0;
 	cin >> x;
-	while (x != 9)
+	while (x != 8)
 	{
 		switch (x)
 		{
 		case 1:
 			Admin.add_animal();
 			break;
+		
 		case 2:
-			Admin.add_salesman();
+			Admin.add_booking();
 			break;
 		case 3:
-			//Admin.add_booking();
-			break;
-		case 4:
 			Admin.view_details();
 			break;
+		
+		case 4:
+			Admin.view_available_animals();
+			break;
 		case 5:
-
+			cout << "Enter the token Id of that animal\n";
+			cin >> id;
+			Admin.view_an_animal(id);
 			break;
 		case 6:
-
+			Admin.view_booking();
 			break;
 		case 7:
-
+			cout << "Enter the booking Id of that customer\n";
+			cin >> id;
+			Admin.view_reservations_of_customer(id);
 			break;
+
 		case 8:
-
-			break;
-		case 9:
-
+			cout << "Quitting";
 			break;
 
 		default:
@@ -78,23 +81,15 @@ void Admin_function(char buff[20])
 		AdminMenu();
 		cin >> x;
 	}
-
-
-
 }
 
 void Slaughter_House_Main()
 {
-
-	cout << "Select: " << endl;
-	cout << "1. Admin" << endl;
-	cout << "2. Salesman" << endl;
+	cout << "Signed in as Admin " << endl;
+	
 	char buff[20];
 	char buff_text[20];
-	int x = 0;
-	cin >> x;
-	if (x == 1)
-	{
+	
 		cout << "Enter Password" << endl;
 		cin >> buff;
 		ifstream fin;
@@ -110,20 +105,11 @@ void Slaughter_House_Main()
 			{
 				Admin_function(buff_text);
 			}
-
+			else
+				cout << "Wrong Password\n";
 		}
 		else
 			cout << "admin pass not opened" << endl;
-		
-	}
-	else if (x == 2)
-	{
-		cout << "Salesman under construction" << endl;
-	}
-	else
-	{
-		cout << "\nwrong input. Come again\n";
-	}
 	return;
 }
 
