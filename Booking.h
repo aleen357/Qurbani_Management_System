@@ -24,9 +24,11 @@ class Booking {
     int Day_to_get_meat;
     string Start_time;  // when his slaughter time starts
     string End_time;
+	int total_price;
 public:
     friend class Customer;
 	Booking();
+	int calc_total_price();
 };
 
 
