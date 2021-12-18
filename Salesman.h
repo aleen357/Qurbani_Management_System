@@ -9,14 +9,16 @@
 
 class Salesman//
 {
-	//Booking_main My_bookings;
-	Animal_details My_Animals;
+	int id;
+	char password[20];
 public:
-	friend class Admin_UI;
 	Salesman();
+	Salesman(int, char arr[]);
 	void view_booking();
 	void view_available_animals();
-	void view_animals();
+	void view_details();
+	void view_an_animal();
+	
 
 };
 

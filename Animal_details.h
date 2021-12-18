@@ -12,6 +12,7 @@ protected:
 	static int curr_token;
 	
 public:
+	friend class Salesman;
 	Animal_details();
 	void fill_details();//the file handling function which will read from cow.txt and goat.txt and fill the arrays
 	void write_details();

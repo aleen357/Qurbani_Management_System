@@ -22,12 +22,14 @@ void Admin_UI::view_details()
 	My_Animals.view_details();
 }
 
-/*void Admin_UI::add_salesman()
+void Admin_UI::add_salesman()
 {
 	//assign new id to salesman \
 	//assign password
-	//employees->salesman
-}*/
+	
+
+
+}
 
 
 
