@@ -13,6 +13,8 @@ public:
 	Animal();
 	friend class Animal_details;
 	friend class Booking_main;
+	int Get_token();
+	int Get_price();
 };
 
 #endif //SDA_PROJECT_ANIMAL_H

@@ -17,7 +17,7 @@ public:
 	//void view_booking();
 	//void set_password();
 	//void get_password();
-	void view_booking();
+	void view_booking(int);
 	void view_available_animals();
 	void view_an_animal(int);
 	void view_reservations_of_customer(int);

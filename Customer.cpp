@@ -29,6 +29,6 @@ void Customer::SetCNIC(char(&id)[20])
 
 void Customer::SetContact(char(&c)[15])
 {
-	strcpy_s(name, 15, c);
+	strcpy_s(contact, 15, c);
 }
 

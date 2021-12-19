@@ -23,4 +23,5 @@ public:
 	void view_details();	//displays all the animals
 	void view_animal(int);	//displays a specific  animal
 	friend class Booking_main;
+	friend class Booking;
 };

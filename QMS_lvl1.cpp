@@ -36,6 +36,7 @@ void Admin_function(char buff[20])
 	Admin_UI Admin;
 	AdminMenu();
 	int x, id=0;
+	int b_ID = 0;
 	cin >> x;
 	while (x != 8)
 	{
@@ -64,10 +65,14 @@ void Admin_function(char buff[20])
 			break;
 
 		case 6:							//displays all the bookings
-			Admin.view_booking();
+			cout << "Enter booking ID";
+			cin >> b_ID;
+			Admin.view_booking(b_ID);
+
 			break;
 
 		case 7:							//displays the bookings of a customer
+			
 			cout << "Enter the booking Id of that customer\n";
 			cin >> id;
 			Admin.view_reservations_of_customer(id);

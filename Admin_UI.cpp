@@ -27,9 +27,9 @@ void Admin_UI::add_booking()
 	
 }
 
-void Admin_UI::view_booking()
+void Admin_UI::view_booking(int b_ID)
 {
-	My_booking.view_booking();
+	My_booking.view_booking(b_ID);				///bookingId
 }
 
 void Admin_UI::view_available_animals()

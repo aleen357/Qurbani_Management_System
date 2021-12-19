@@ -141,7 +141,6 @@ void Animal_details::write_details()
 	out.open("Cow.bin", ios::binary);
 	if (out.is_open())
 	{
-		cout << "This is the new list of cows in the farm:" << endl;
 		Cow dummy;
 
 		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
@@ -163,8 +162,6 @@ void Animal_details::write_details()
 		for (auto i = my_cow.begin(); i != my_cow.end(); ++i)
 		{
 			in.read((char*)& dummy, sizeof(Cow));
-			cout << "price: " << dummy.price << endl;
-			cout << "token: " << dummy.token << endl<< endl;
 			//file_obj.write((char*)& class_obj, sizeof(class_obj));
 		}
 		in.close();
@@ -179,7 +176,7 @@ void Animal_details::write_details()
 	outs.open("Goat.bin", ios::binary);
 	if (outs.is_open())
 	{
-		cout << "This is the new list of goats in the farm:" << endl;
+		
 		Goat dummy;
 
 		for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
@@ -202,8 +199,6 @@ void Animal_details::write_details()
 		for (auto i = my_goat.begin(); i != my_goat.end(); ++i)
 		{
 			ins.read((char*)& dummy, sizeof(Goat));
-			cout << "price: " << dummy.price << endl;
-			cout << "token: " << dummy.token << endl<< endl;
 			//file_obj.write((char*)& class_obj, sizeof(class_obj));
 		}
 		ins.close();

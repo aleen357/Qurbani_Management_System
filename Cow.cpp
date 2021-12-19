@@ -28,9 +28,14 @@ int Cow::Get_parts_remaining()
 void Cow::Set_parts(int x, int stat)			//x=no of parts to be booked
 {
 	int start = 7 - parts_remaining;
-	for (int i = start; i <= x; i++)
+	for (int i = start; i < x+start ; i++)
 	{
 		parts[i] = stat;
 	}
 	parts_remaining = parts_remaining - x;
+	if (parts_remaining == 0)
+	{
+		this->status = true;
+	}
 }
+

@@ -18,13 +18,16 @@ class Booking_main {
 public:
 	Booking_main();
 	void add_booking(Animal_details &obj);
-	void view_booking();
+	void view_booking(int);
 	void fill_bookings(); 
 	void write_bookings();
-	void view_booking_of_a_customer(int a);
+	void view_booking_of_a_customer(char (&a)[20]);
 	void TimeSet();
 	void TimeReset();
 	void Set_customer(Customer &obj);
+	
+	void SetBookings(Booking &obj);
+	bool Check_valid_order(int tok, int share, Animal_details &obj);
 };
 
 

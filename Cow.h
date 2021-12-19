@@ -13,6 +13,7 @@ public:
 	~Cow();
 	int Get_parts_remaining();
 	void Set_parts(int, int);
+	
 };
 
 
