@@ -6,6 +6,7 @@
 #include "Animal_details.h"
 #include <list>
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 class Booking_main {
@@ -28,6 +29,10 @@ public:
 	
 	void SetBookings(Booking &obj);
 	bool Check_valid_order(int tok, int share, Animal_details &obj);
+	//
+	void Execute_Bookings(int ID);
+	void Execute_All_Bookings();
+	void Customer_has_come(int B_id);
 };
 
 

@@ -4,8 +4,38 @@
 #include <iostream>
 #include "Admin_UI.h"
 #include <fstream>
-
+#include<thread>
+#include<chrono>
 #include<stdlib.h>
+
+void take_EidDay()
+{
+	ofstream fout;
+	fout.open("Eid.txt");
+	int x = 0;
+	int count = 1;
+	if (fout.is_open())
+	{
+		while (count <= 3)
+		{
+			cout << "Enter Day for eid day: "<<count << endl;
+			cin >> x;
+			fout<<x<<" ";
+			cout << "Enter Month for eid day: " << count << endl;
+			cin >> x;
+			fout << x << " ";
+			cout << "Enter Year for eid day: " << count << endl;
+			cin >> x;
+			fout << x << " ";
+			count++;
+			fout << endl;
+		}
+	}
+	else
+		cout << "eid file exists" << endl;
+
+	
+}
 
 void AdminMenu()			//menu of admin's functionalities
 {
@@ -125,6 +155,7 @@ void Slaughter_House_Main()
 int main()
 {
 	cout << "						Welcome to the Qurbani Masjid\n";
+	take_EidDay();
 	Slaughter_House_Main();
 	return 0;
 }

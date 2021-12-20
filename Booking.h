@@ -30,7 +30,7 @@ protected:
 	int Ehour;
 	int Smins;  // when his slaughter time starts
 	int Emins;
-
+	int status;
 	int total_price;
 
 public:
@@ -46,6 +46,7 @@ public:
 	void Set_booking_id(int x);
 	int Get_booking_id();
 	void insert_an_animal(int, int);
+	void print_booking();//prints booking details of one booking
 };
 
 

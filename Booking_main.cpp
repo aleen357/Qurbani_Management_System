@@ -4,10 +4,11 @@
 #include <iostream>
 #include<fstream>
 
+
 using namespace std;
 int Booking_main::total_bookings=0;
- int Booking_main::curr_hours = 5;
- int Booking_main::curr_mins = 30;
+int Booking_main::curr_hours = 5;
+int Booking_main::curr_mins = 30;
 
  void Booking_main::TimeSet()
  {
@@ -89,7 +90,7 @@ int Booking_main::total_bookings=0;
  void Booking_main::SetBookings(Booking &obj)
  {
 	 total_bookings++;
-	 
+	 obj.booking_id = total_bookings;
 	 TimeSet();
 	 obj.Shour = curr_hours;
 	 obj.Smins = curr_mins;
@@ -203,6 +204,7 @@ Booking_main::Booking_main()
 			fout << Bookings_per_day[1] << endl;
 			fout << Bookings_per_day[2] << endl;
 		}
+		
 	}
 	else
 	{
@@ -214,10 +216,12 @@ Booking_main::Booking_main()
 		cout << "No. of bookings on 3rd Day: " << Bookings_per_day[2] << endl;
 		fin.close();
 	}
+	fill_bookings();
 }
 
 void Booking_main::add_booking(Animal_details &obj)
 {
+
 	int option=0, total = 0, turn = 0;
 	bool Gotta_get_price = false;
 	Booking My_book;
@@ -248,6 +252,7 @@ void Booking_main::add_booking(Animal_details &obj)
 		}
 		else if (y == 2)
 		{
+			z = 1;
 			if (Check_valid_order(x, 1, obj) == true)
 			{
 				if (turn == 0)
@@ -273,34 +278,347 @@ void Booking_main::add_booking(Animal_details &obj)
 		total = My_book.calc_total_price(obj);
 		My_book.SetPrice(total);
 		list_of_Booking.push_back(My_book);
+		write_bookings();
 	}
 	cout << "Your Total is: " << total;
 	
 
 }
 
-void Booking_main::view_booking(int x)
+void Booking_main::view_booking(int x)//view booking with an id
 {
-
+	Execute_Bookings(x);
+	for (auto i = list_of_Booking.begin(); i != list_of_Booking.end(); ++i)
+	{
+		if (i->booking_id == x)
+		{
+			//found a match
+			i->print_booking();
+			break;
+		}
+		
+	}
 }
 
 void Booking_main::fill_bookings()
 {
+	//this function will be called for exportinig file info of bookings to program
+	Booking* dummy;
+	int x;
+	char buff_name[30];
+	char buff_cnic[20];
+	char buff_phone[15];
+	int token = 0;
+	int price = 0;
+	char nl = ' ';//nl=newline or eof
+	int start = 1;
+	int total_book = 0;
+	ifstream fin;
+	fin.open("Booking.txt");
+	if (fin.is_open())
+	{
+		//bookingid day_to_get_meat shour ehour smin emin name/ cnic/ contact/ token price token price/" "\n
+		fin >> x;
+		total_book = x;
+		while (start!=total_book+1)
+		{
+			
+			nl = ' ';
+			dummy = new Booking;
+			fin >> x;
+			dummy[0].booking_id = x;
+
+			fin >> x;
+			dummy[0].status = x;
+
+			fin >> x;
+			dummy[0].Day_to_get_meat = x;
+
+			fin >> x;
+			dummy[0].Shour = x;
+
+			fin >> x;
+			dummy[0].Ehour = x;
+
+			fin >> x;
+			dummy[0].Smins = x;
+
+			fin >> x;
+			dummy[0].Emins = x;
+
+			fin >> x;
+			dummy[0].total_price = x;
+
+			fin.getline(buff_name, 30, '/');
+
+			dummy[0].buyer.SetName(buff_name);
+
+			fin.getline(buff_cnic, 20, '/');
+			dummy[0].buyer.SetCNIC(buff_cnic);
+
+			fin.getline(buff_phone, 15, '/');
+			dummy[0].buyer.SetContact(buff_phone);
+			while (nl != '/')
+			{
+				fin >> x;
+				token = x;
+
+				fin >> x;
+				price = x;
+
+				dummy->insert_an_animal(token, price);
+
+				fin >> nl;
+			}
+
+			/*while (nl != '/')
+			{
+				x = (int)nl;
+				token = x-48;
+
+				fin >> x;
+				price = x;
+
+				dummy->insert_an_animal(token, price);
+
+				fin >> nl;
+			}*/
+
+			total_bookings = dummy->booking_id;
+			curr_hours = dummy->Shour;
+			curr_mins = dummy->Smins;
+			//fin >> nl;//fins for endl
+			//fin >> nl;//fins for eof case
+			list_of_Booking.push_back(dummy[0]);
+			nl = ' ';
+			delete dummy;
+			start++;
+		
+		}
+	}
+	else
+		cout << "Booking.txt is empty" << endl;
+
 
 }
 
 void Booking_main::write_bookings()
 {
+	int count = 0;
+	int size=0;
+	int x;
 	ofstream out;
-	out.open("Booking.bin", ios::binary);
+	out.open("Booking.txt");
 	if (out.is_open())
 	{
-	
+		out << total_bookings << endl;
+		//bookingid status day_to_get_meat shour ehour smin emin total_price name/ cnic contact token price token price/
+		for (auto i = list_of_Booking.begin(); i != list_of_Booking.end(); ++i)
+		{
+			size = i->detail_of_animal.size();
+
+			out << i->booking_id << " " <<i->status<<" "<< i->Day_to_get_meat << " " << i->Shour << " " << i->Ehour << " " << i->Smins << " " << i->Emins<<" "<<i->total_price<<" "<< i->buyer.getName() << "/ " << i->buyer.getCNIC() << "/ " << i->buyer.getContact() << "/";
+			for (auto j = i->detail_of_animal.begin(); j != i->detail_of_animal.end(); ++j)
+			{
+				if (count<size-1)
+					out << " " << j->token << " " << j->parts << " + ";
+				else
+					out << " " << j->token << " " << j->parts;
+				count++;
+			}
+			if(i!=list_of_Booking.end())
+			out << "/\n";
+			else
+			out<<"/";
+		}
+
+		cout << "booking recoreded" << endl;
 	}
+	else
+		cout << "error in booking" << endl;
 
 }
 
 void Booking_main::view_booking_of_a_customer(char (&a)[20])
 {
 	
+}
+
+
+
+void Booking_main::Execute_Bookings(int ID)
+{
+	time_t rawtime;
+	struct tm* timeinfo;
+
+	/* get current timeinfo and modify it to the user's choice */
+	time(&rawtime);
+	timeinfo = gmtime(&rawtime);
+
+	/*time_t ttime = time(0);
+	struct tm* local_time = localtime(&ttime);*/
+	int year =1900+timeinfo->tm_year;
+	int month = 1+timeinfo->tm_mon;
+	int day = timeinfo->tm_mday;
+	bool flag = false;
+	bool day1 = false;
+	bool day2 = false;
+	bool day3 = false;
+	bool time_has_come = false;
+	bool time_has_end = false;
+	int hour = 5+timeinfo->tm_hour;
+	int mins = timeinfo->tm_min;
+
+	for (auto i = list_of_Booking.begin(); i != list_of_Booking.end(); ++i)
+	{
+		if (i->booking_id == ID)
+		{
+			//found a match
+			//check if day 1 matches 
+			//i->print_booking();
+			if (i->status == 2)
+			{
+				cout << "you have already collected" << endl;
+				return;
+			}
+			if (i->status == 3)
+			{
+				cout << "your meat has been distributed....." << endl;
+				return;
+			}
+			ifstream fout;
+			fout.open("Eid.txt");
+			int x = 0;
+			int count = 1, date2, year2, month2;
+			if (fout.is_open())
+			{
+				while (count <= 3)
+				{
+
+					fout >> date2;
+
+
+					fout >> month2;
+
+
+					fout >> year2;
+
+					if (date2 == day && month2 == month && year2 == year && count == 1)
+					{
+						day1 = true;
+						break;
+					}
+
+					if (date2 == day && month2 == month && year2 == year && count == 2)
+					{
+						day2 = true;
+						break;
+					}
+
+					if (date2 == day && month2 == month && year2 == year && count == 3)
+					{
+						day3 = true;
+						break;
+					}
+					count++;
+				}
+
+				if (i->Shour < hour && hour < i->Ehour)
+				{
+					time_has_come = true;
+				}
+				else if (i->Shour == hour && i->Smins <= mins)
+				{
+					time_has_come = true;
+				}
+				else if (i->Ehour == hour && i->Emins > mins)
+				{
+					time_has_come = true;
+				}
+				// ending conndition
+				if (i->Ehour == hour && i->Emins < mins)
+				{
+					time_has_end = true;
+				}
+				else if (hour > i->Ehour)
+				{
+					time_has_end = true;
+				}
+
+				if (day1 == true && time_has_come == true)
+				{
+					//we change status to slaughtered
+					i->status = 1;
+
+				}
+				if (day2 == true && time_has_come == true)
+				{
+					//we change status to slaughtered
+					i->status = 1;
+
+				}
+				if (day3 == true && time_has_come == true)
+				{
+					//we change status to slaughtered
+					i->status = 1;
+
+				}
+
+				if (day1 == true && time_has_end == true && i->status != 2)
+				{
+					//we change status to slaughtered
+					i->status = 3;
+
+				}
+				if (day2 == true && time_has_end == true && i->status != 2)
+				{
+					//we change status to slaughtered
+					i->status = 3;
+
+				}
+				if (day3 == true && time_has_end == true && i->status != 2)
+				{
+					//we change status to slaughtered
+					i->status = 3;
+
+				}
+			}
+			else
+				cout << "error in eid file" << endl;
+			this->write_bookings();
+			break;
+		}
+
+	}
+
+
+
+}
+
+void Booking_main::Execute_All_Bookings()
+{
+	for (auto i = list_of_Booking.begin(); i != list_of_Booking.end(); ++i)
+	{
+		Execute_Bookings(i->booking_id);
+	}
+}
+
+void Booking_main::Customer_has_come(int B_id)
+{
+	for (auto i = list_of_Booking.begin(); i != list_of_Booking.end(); ++i)
+	{
+		Execute_Bookings(B_id);
+		if (i->booking_id == B_id)
+		{
+			if (i->status == 1)
+			{
+				cout << "Thankyou Heres your meat" << endl;
+				i->status = 2;
+			}
+			if (i->status == 3)
+			{
+				cout << "Your meat has been distributed" << endl;
+			}
+		}
+	}
 }

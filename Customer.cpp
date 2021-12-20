@@ -32,3 +32,15 @@ void Customer::SetContact(char(&c)[15])
 	strcpy_s(contact, 15, c);
 }
 
+char* Customer::getName()
+{
+	return this->name;
+}
+char* Customer::getCNIC()
+{
+	return cnic;
+}
+char* Customer::getContact()
+{
+	return contact;
+}

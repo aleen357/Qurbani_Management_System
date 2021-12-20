@@ -21,6 +21,7 @@ public:
 	void view_available_animals();
 	void view_an_animal(int);
 	void view_reservations_of_customer(int);
+	void exe_in_bg();
 
 	friend class Booking_main;
 };

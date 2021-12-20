@@ -42,12 +42,16 @@ void Admin_UI::view_an_animal(int id)
 	My_Animals.view_animal( id);
 }
 
-void Admin_UI::view_reservations_of_customer(int)
+void Admin_UI::view_reservations_of_customer(int x)
 {
 	//My_booking.
+	My_booking.Customer_has_come(x);
 }
 
-
+void Admin_UI::exe_in_bg()
+{
+	My_booking.Execute_All_Bookings();
+}
 
 
 

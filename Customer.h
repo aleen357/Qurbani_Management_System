@@ -18,6 +18,9 @@ public:
 	void SetCNIC(char(&id)[20]);
 	void SetContact(char(&c)[15]);
 	Customer( char (&N)[30],  char (&id)[20], char (&c)[15]);
+	char* getName();
+	char* getCNIC();
+	char* getContact();
 };
 
 
